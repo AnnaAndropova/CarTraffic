@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+<!--    <changeSet author="anna" id="01622390830549-1">-->
+<!--        <preConditions onFail="WARN">-->
+<!--            <not>-->
+<!--            <sequenceExists sequenceName="car_id_seq"/>-->
+<!--            </not>-->
+<!--        </preConditions>-->
+<!--        <createSequence sequenceName="car_id_seq"/>-->
+<!--    </changeSet>-->
+<!--    <changeSet author="anna" id="1622390830549-2">-->
+<!--        <preConditions onFail="WARN">-->
+<!--            <not>-->
+<!--                <sequenceExists sequenceName="road_cell_id_seq"/>-->
+<!--            </not>-->
+<!--        </preConditions>-->
+<!--        <createSequence sequenceName="road_cell_id_seq"/>-->
+<!--    </changeSet>-->
+<!--    <changeSet author="anna" id="01622390830549-3">-->
+<!--        <createSequence sequenceName="road_id_seq"/>-->
+<!--    </changeSet>-->
+
+    <changeSet author="anna" id="01622394413822-4">
+        <createTable tableName="car">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints primaryKey="true" primaryKeyName="car_pkey"/>
+            </column>
+            <column name="type" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="normal_speed" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="cur_speed" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="position" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="time_hard_slowing" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="time_crashed" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="anna" id="01622394413822-5">
+        <createTable tableName="road">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints primaryKey="true" primaryKeyName="road_pkey"/>
+            </column>
+            <column name="length" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="anna" id="01622394413822-6">
+        <createTable tableName="road_cell">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints primaryKey="true" primaryKeyName="road_cell_pkey"/>
+            </column>
+            <column name="car_id" type="INT"/>
+            <column name="road_id" type="INT"/>
+        </createTable>
+    </changeSet>
+    <!--    <changeSet author="anna" id="1622394413822-7">-->
+    <!--        <addForeignKeyConstraint baseColumnNames="car_id" baseTableName="road_cell" constraintName="fk1" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="car"/>-->
+    <!--    </changeSet>-->
+    <!--    <changeSet author="anna" id="1622394413822-8">-->
+    <!--        <addForeignKeyConstraint baseColumnNames="road_id" baseTableName="road_cell" constraintName="fk2" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="road"/>-->
+    <!--    </changeSet>-->
+</databaseChangeLog>
